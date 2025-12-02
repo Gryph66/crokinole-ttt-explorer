@@ -443,6 +443,9 @@ def generate_html_content(player_data, player_list):
                 <button class="btn" onclick="addTopPlayers(5)">Add Top 5</button>
                 <button class="btn" onclick="addTopPlayers(10)">Add Top 10</button>
                 <button class="btn" onclick="addRangePlayers(11, 20)">Add 11-20</button>
+                <button class="btn" onclick="addRangePlayers(21, 30)">Add 21-30</button>
+                <button class="btn" onclick="addRangePlayers(31, 40)">Add 31-40</button>
+                <button class="btn" onclick="addRangePlayers(41, 50)">Add 41-50</button>
             </div>
             <div class="selected-players" id="selectedTags"></div>
         </section>
