@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TTT Singles vs TTT + Doubles (gamma=0.03)</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; max-width: 1300px; margin: 0 auto; background: #f9f9f9; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        th, td { padding: 12px; text-align: center; border: 1px solid #ddd; }
+        th { background: #2c3e50; color: white; }
+        tr:nth-child(even) { background: #f8f9fa; }
+        .player { text-align: left !important; font-weight: bold; }
+        .up { color: green; font-weight: bold; }
+        .down { color: red; font-weight: bold; }
+        .chart-container { margin: 40px 0; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <h1>TTT Singles Only vs TTT + Doubles (gamma=0.03)</h1>
+    <p>Both models use the same parameters. Doubles data adds ~50% more evidence.</p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Player</th>
+                <th>Singles Only<br>Rank</th>
+                <th>Rating</th>
+                <th>With Doubles<br>Rank</th>
+                <th>Rating</th>
+                <th>Δ Rank</th>
+                <th>Δ Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td class="player">Justin Slater</td>
+                <td>1</td>
+                <td>5.285</td>
+                <td>1</td>
+                <td>5.267</td>
+                <td class="">+0</td>
+                <td class="">-0.018</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td class="player">Devon Fortino</td>
+                <td>2</td>
+                <td>5.147</td>
+                <td>2</td>
+                <td>4.390</td>
+                <td class="">+0</td>
+                <td class="">-0.758</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td class="player">Andrew Hutchinson</td>
+                <td>3</td>
+                <td>4.723</td>
+                <td>3</td>
+                <td>4.377</td>
+                <td class="">+0</td>
+                <td class="">-0.346</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td class="player">Josh Carrafiello</td>
+                <td>4</td>
+                <td>4.560</td>
+                <td>5</td>
+                <td>3.997</td>
+                <td class="down">-1</td>
+                <td class="down">-0.564</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td class="player">Shawn Hagarty</td>
+                <td>5</td>
+                <td>4.380</td>
+                <td>6</td>
+                <td>3.711</td>
+                <td class="down">-1</td>
+                <td class="down">-0.669</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td class="player">Connor Reinman</td>
+                <td>6</td>
+                <td>4.328</td>
+                <td>4</td>
+                <td>4.260</td>
+                <td class="up">+2</td>
+                <td class="up">-0.068</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td class="player">Jason Beierling</td>
+                <td>7</td>
+                <td>3.856</td>
+                <td>7</td>
+                <td>3.603</td>
+                <td class="">+0</td>
+                <td class="">-0.254</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td class="player">Tom Curry</td>
+                <td>8</td>
+                <td>3.385</td>
+                <td>8</td>
+                <td>3.403</td>
+                <td class="">+0</td>
+                <td class="">+0.017</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td class="player">Jeremy Tracey</td>
+                <td>9</td>
+                <td>3.289</td>
+                <td>9</td>
+                <td>3.373</td>
+                <td class="">+0</td>
+                <td class="">+0.084</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td class="player">Ryan Buhr</td>
+                <td>10</td>
+                <td>2.982</td>
+                <td>10</td>
+                <td>2.985</td>
+                <td class="">+0</td>
+                <td class="">+0.002</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td class="player">Robert Bonnett</td>
+                <td>11</td>
+                <td>2.895</td>
+                <td>11</td>
+                <td>2.902</td>
+                <td class="">+0</td>
+                <td class="">+0.007</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td class="player">Ray Beierling</td>
+                <td>12</td>
+                <td>2.875</td>
+                <td>15</td>
+                <td>2.661</td>
+                <td class="down">-3</td>
+                <td class="down">-0.214</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td class="player">Steve Burrows</td>
+                <td>13</td>
+                <td>2.692</td>
+                <td>14</td>
+                <td>2.694</td>
+                <td class="down">-1</td>
+                <td class="down">+0.003</td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td class="player">Ron Langill</td>
+                <td>14</td>
+                <td>2.666</td>
+                <td>17</td>
+                <td>2.642</td>
+                <td class="down">-3</td>
+                <td class="down">-0.025</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td class="player">Brian Cook</td>
+                <td>15</td>
+                <td>2.653</td>
+                <td>16</td>
+                <td>2.651</td>
+                <td class="down">-1</td>
+                <td class="down">-0.002</td>
+            </tr>
+            <tr>
+                <td>16</td>
+                <td class="player">Darren Carr</td>
+                <td>16</td>
+                <td>2.646</td>
+                <td>13</td>
+                <td>2.698</td>
+                <td class="up">+3</td>
+                <td class="up">+0.051</td>
+            </tr>
+            <tr>
+                <td>17</td>
+                <td class="player">Nolan Tracey</td>
+                <td>17</td>
+                <td>2.584</td>
+                <td>19</td>
+                <td>2.499</td>
+                <td class="down">-2</td>
+                <td class="down">-0.085</td>
+            </tr>
+            <tr>
+                <td>18</td>
+                <td class="player">James Medway</td>
+                <td>18</td>
+                <td>2.511</td>
+                <td>12</td>
+                <td>2.768</td>
+                <td class="up">+6</td>
+                <td class="up">+0.257</td>
+            </tr>
+            <tr>
+                <td>19</td>
+                <td class="player">Travis Keener</td>
+                <td>19</td>
+                <td>2.464</td>
+                <td>21</td>
+                <td>2.419</td>
+                <td class="down">-2</td>
+                <td class="down">-0.045</td>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td class="player">Mike Ray</td>
+                <td>20</td>
+                <td>2.406</td>
+                <td>22</td>
+                <td>2.412</td>
+                <td class="down">-2</td>
+                <td class="down">+0.007</td>
+            </tr>
+            <tr>
+                <td>21</td>
+                <td class="player">Mike McTague</td>
+                <td>21</td>
+                <td>2.333</td>
+                <td>27</td>
+                <td>2.329</td>
+                <td class="down">-6</td>
+                <td class="down">-0.004</td>
+            </tr>
+            <tr>
+                <td>22</td>
+                <td class="player">Simon Dowrick</td>
+                <td>22</td>
+                <td>2.284</td>
+                <td>20</td>
+                <td>2.440</td>
+                <td class="up">+2</td>
+                <td class="up">+0.156</td>
+            </tr>
+            <tr>
+                <td>23</td>
+                <td class="player">Kris Flossbach</td>
+                <td>23</td>
+                <td>2.263</td>
+                <td>24</td>
+                <td>2.395</td>
+                <td class="down">-1</td>
+                <td class="down">+0.132</td>
+            </tr>
+            <tr>
+                <td>24</td>
+                <td class="player">Jeff McKeen</td>
+                <td>24</td>
+                <td>2.251</td>
+                <td>30</td>
+                <td>2.158</td>
+                <td class="down">-6</td>
+                <td class="down">-0.093</td>
+            </tr>
+            <tr>
+                <td>25</td>
+                <td class="player">Jamie Harter</td>
+                <td>25</td>
+                <td>2.169</td>
+                <td>18</td>
+                <td>2.533</td>
+                <td class="up">+7</td>
+                <td class="up">+0.364</td>
+            </tr>
+            <tr>
+                <td>26</td>
+                <td class="player">Linder Wendt</td>
+                <td>26</td>
+                <td>2.157</td>
+                <td>23</td>
+                <td>2.410</td>
+                <td class="up">+3</td>
+                <td class="up">+0.253</td>
+            </tr>
+            <tr>
+                <td>27</td>
+                <td class="player">Jon Conrad</td>
+                <td>27</td>
+                <td>2.150</td>
+                <td>25</td>
+                <td>2.385</td>
+                <td class="up">+2</td>
+                <td class="up">+0.235</td>
+            </tr>
+            <tr>
+                <td>28</td>
+                <td class="player">Darin Van Gammeren</td>
+                <td>28</td>
+                <td>2.081</td>
+                <td>28</td>
+                <td>2.219</td>
+                <td class="">+0</td>
+                <td class="">+0.138</td>
+            </tr>
+            <tr>
+                <td>29</td>
+                <td class="player">Bruce Hartung</td>
+                <td>29</td>
+                <td>2.024</td>
+                <td>34</td>
+                <td>1.806</td>
+                <td class="down">-5</td>
+                <td class="down">-0.218</td>
+            </tr>
+            <tr>
+                <td>30</td>
+                <td class="player">Andrew Hartung</td>
+                <td>30</td>
+                <td>2.004</td>
+                <td>35</td>
+                <td>1.768</td>
+                <td class="down">-5</td>
+                <td class="down">-0.236</td>
+            </tr>
+            <tr>
+                <td>31</td>
+                <td class="player">Reid Tracey</td>
+                <td>31</td>
+                <td>1.965</td>
+                <td>42</td>
+                <td>1.677</td>
+                <td class="down">-11</td>
+                <td class="down">-0.288</td>
+            </tr>
+            <tr>
+                <td>32</td>
+                <td class="player">Mark Harper</td>
+                <td>32</td>
+                <td>1.917</td>
+                <td>36</td>
+                <td>1.753</td>
+                <td class="down">-4</td>
+                <td class="down">-0.164</td>
+            </tr>
+            <tr>
+                <td>33</td>
+                <td class="player">Ryotaro Fukuda</td>
+                <td>33</td>
+                <td>1.830</td>
+                <td>41</td>
+                <td>1.703</td>
+                <td class="down">-8</td>
+                <td class="down">-0.127</td>
+            </tr>
+            <tr>
+                <td>34</td>
+                <td class="player">Eric Mammen</td>
+                <td>34</td>
+                <td>1.802</td>
+                <td>26</td>
+                <td>2.373</td>
+                <td class="up">+8</td>
+                <td class="up">+0.571</td>
+            </tr>
+            <tr>
+                <td>35</td>
+                <td class="player">Joe Tegeltija</td>
+                <td>35</td>
+                <td>1.713</td>
+                <td>39</td>
+                <td>1.722</td>
+                <td class="down">-4</td>
+                <td class="down">+0.009</td>
+            </tr>
+            <tr>
+                <td>36</td>
+                <td class="player">Marc Ponzio</td>
+                <td>36</td>
+                <td>1.696</td>
+                <td>31</td>
+                <td>2.124</td>
+                <td class="up">+5</td>
+                <td class="up">+0.428</td>
+            </tr>
+            <tr>
+                <td>37</td>
+                <td class="player">Nathan Walsh</td>
+                <td>37</td>
+                <td>1.694</td>
+                <td>38</td>
+                <td>1.739</td>
+                <td class="down">-1</td>
+                <td class="down">+0.045</td>
+            </tr>
+            <tr>
+                <td>38</td>
+                <td class="player">Matt Brown</td>
+                <td>38</td>
+                <td>1.637</td>
+                <td>37</td>
+                <td>1.748</td>
+                <td class="up">+1</td>
+                <td class="up">+0.111</td>
+            </tr>
+            <tr>
+                <td>39</td>
+                <td class="player">Krisztián Berzlánovich</td>
+                <td>39</td>
+                <td>1.603</td>
+                <td>45</td>
+                <td>1.620</td>
+                <td class="down">-6</td>
+                <td class="down">+0.017</td>
+            </tr>
+            <tr>
+                <td>40</td>
+                <td class="player">Dwayne Campbell</td>
+                <td>40</td>
+                <td>1.597</td>
+                <td>40</td>
+                <td>1.713</td>
+                <td class="">+0</td>
+                <td class="">+0.116</td>
+            </tr>
+            <tr>
+                <td>41</td>
+                <td class="player">George McCarthy</td>
+                <td>41</td>
+                <td>1.585</td>
+                <td>46</td>
+                <td>1.617</td>
+                <td class="down">-5</td>
+                <td class="down">+0.031</td>
+            </tr>
+            <tr>
+                <td>42</td>
+                <td class="player">Ádám Huszárik</td>
+                <td>42</td>
+                <td>1.427</td>
+                <td>48</td>
+                <td>1.558</td>
+                <td class="down">-6</td>
+                <td class="down">+0.132</td>
+            </tr>
+            <tr>
+                <td>43</td>
+                <td class="player">Garret Tracey</td>
+                <td>43</td>
+                <td>1.383</td>
+                <td>43</td>
+                <td>1.652</td>
+                <td class="">+0</td>
+                <td class="">+0.269</td>
+            </tr>
+            <tr>
+                <td>44</td>
+                <td class="player">Gerald Kuepfer</td>
+                <td>44</td>
+                <td>1.359</td>
+                <td>53</td>
+                <td>1.484</td>
+                <td class="down">-9</td>
+                <td class="down">+0.125</td>
+            </tr>
+            <tr>
+                <td>45</td>
+                <td class="player">Brandyn Osborne</td>
+                <td>45</td>
+                <td>1.343</td>
+                <td>33</td>
+                <td>1.872</td>
+                <td class="up">+12</td>
+                <td class="up">+0.529</td>
+            </tr>
+            <tr>
+                <td>46</td>
+                <td class="player">Patrick Ten Eyck</td>
+                <td>46</td>
+                <td>1.342</td>
+                <td>52</td>
+                <td>1.489</td>
+                <td class="down">-6</td>
+                <td class="down">+0.146</td>
+            </tr>
+            <tr>
+                <td>47</td>
+                <td class="player">Eric Miltenburg</td>
+                <td>47</td>
+                <td>1.324</td>
+                <td>63</td>
+                <td>1.337</td>
+                <td class="down">-16</td>
+                <td class="down">+0.013</td>
+            </tr>
+            <tr>
+                <td>48</td>
+                <td class="player">Ehren Lewis</td>
+                <td>48</td>
+                <td>1.313</td>
+                <td>56</td>
+                <td>1.445</td>
+                <td class="down">-8</td>
+                <td class="down">+0.132</td>
+            </tr>
+            <tr>
+                <td>49</td>
+                <td class="player">Dean French</td>
+                <td>49</td>
+                <td>1.312</td>
+                <td>65</td>
+                <td>1.322</td>
+                <td class="down">-16</td>
+                <td class="down">+0.011</td>
+            </tr>
+            <tr>
+                <td>50</td>
+                <td class="player">Roy Campbell</td>
+                <td>50</td>
+                <td>1.281</td>
+                <td>55</td>
+                <td>1.465</td>
+                <td class="down">-5</td>
+                <td class="down">+0.185</td>
+            </tr>
+            <tr>
+                <td>51</td>
+                <td class="player">Fred Slater</td>
+                <td>51</td>
+                <td>1.262</td>
+                <td>49</td>
+                <td>1.557</td>
+                <td class="up">+2</td>
+                <td class="up">+0.294</td>
+            </tr>
+            <tr>
+                <td>52</td>
+                <td class="player">Gina Schick</td>
+                <td>52</td>
+                <td>1.212</td>
+                <td>54</td>
+                <td>1.476</td>
+                <td class="down">-2</td>
+                <td class="down">+0.264</td>
+            </tr>
+            <tr>
+                <td>53</td>
+                <td class="player">Clare Kuepfer</td>
+                <td>53</td>
+                <td>1.208</td>
+                <td>58</td>
+                <td>1.432</td>
+                <td class="down">-5</td>
+                <td class="down">+0.223</td>
+            </tr>
+            <tr>
+                <td>54</td>
+                <td class="player">Noel Redmond</td>
+                <td>54</td>
+                <td>1.203</td>
+                <td>84</td>
+                <td>0.834</td>
+                <td class="down">-30</td>
+                <td class="down">-0.369</td>
+            </tr>
+            <tr>
+                <td>55</td>
+                <td class="player">Dan Rowe</td>
+                <td>55</td>
+                <td>1.180</td>
+                <td>68</td>
+                <td>1.184</td>
+                <td class="down">-13</td>
+                <td class="down">+0.005</td>
+            </tr>
+            <tr>
+                <td>56</td>
+                <td class="player">Mark McCleary</td>
+                <td>56</td>
+                <td>1.141</td>
+                <td>67</td>
+                <td>1.200</td>
+                <td class="down">-11</td>
+                <td class="down">+0.059</td>
+            </tr>
+            <tr>
+                <td>57</td>
+                <td class="player">Jeff Fuhr</td>
+                <td>57</td>
+                <td>1.140</td>
+                <td>44</td>
+                <td>1.624</td>
+                <td class="up">+13</td>
+                <td class="up">+0.484</td>
+            </tr>
+            <tr>
+                <td>58</td>
+                <td class="player">George MacCarthy</td>
+                <td>58</td>
+                <td>1.130</td>
+                <td>70</td>
+                <td>1.129</td>
+                <td class="down">-12</td>
+                <td class="down">-0.001</td>
+            </tr>
+            <tr>
+                <td>59</td>
+                <td class="player">Raymond Kappes</td>
+                <td>59</td>
+                <td>1.117</td>
+                <td>50</td>
+                <td>1.544</td>
+                <td class="up">+9</td>
+                <td class="up">+0.427</td>
+            </tr>
+            <tr>
+                <td>60</td>
+                <td class="player">Tyson Kuepfer</td>
+                <td>60</td>
+                <td>1.112</td>
+                <td>64</td>
+                <td>1.334</td>
+                <td class="down">-4</td>
+                <td class="down">+0.221</td>
+            </tr>
+            <tr>
+                <td>61</td>
+                <td class="player">Sander Brugman</td>
+                <td>61</td>
+                <td>1.096</td>
+                <td>57</td>
+                <td>1.437</td>
+                <td class="up">+4</td>
+                <td class="up">+0.341</td>
+            </tr>
+            <tr>
+                <td>62</td>
+                <td class="player">Nikolett Huszárik</td>
+                <td>62</td>
+                <td>1.074</td>
+                <td>51</td>
+                <td>1.528</td>
+                <td class="up">+11</td>
+                <td class="up">+0.454</td>
+            </tr>
+            <tr>
+                <td>63</td>
+                <td class="player">Philip Ware</td>
+                <td>63</td>
+                <td>1.060</td>
+                <td>66</td>
+                <td>1.210</td>
+                <td class="down">-3</td>
+                <td class="down">+0.150</td>
+            </tr>
+            <tr>
+                <td>64</td>
+                <td class="player">Alan Wood</td>
+                <td>64</td>
+                <td>1.031</td>
+                <td>73</td>
+                <td>1.041</td>
+                <td class="down">-9</td>
+                <td class="down">+0.010</td>
+            </tr>
+            <tr>
+                <td>65</td>
+                <td class="player">Michael Barth</td>
+                <td>65</td>
+                <td>1.008</td>
+                <td>61</td>
+                <td>1.369</td>
+                <td class="up">+4</td>
+                <td class="up">+0.361</td>
+            </tr>
+            <tr>
+                <td>66</td>
+                <td class="player">Chris Robinson</td>
+                <td>66</td>
+                <td>0.967</td>
+                <td>76</td>
+                <td>0.937</td>
+                <td class="down">-10</td>
+                <td class="down">-0.030</td>
+            </tr>
+            <tr>
+                <td>67</td>
+                <td class="player">Trevor Grasby</td>
+                <td>67</td>
+                <td>0.961</td>
+                <td>29</td>
+                <td>2.174</td>
+                <td class="up">+38</td>
+                <td class="up">+1.214</td>
+            </tr>
+            <tr>
+                <td>68</td>
+                <td class="player">Harry Rowe</td>
+                <td>68</td>
+                <td>0.931</td>
+                <td>77</td>
+                <td>0.934</td>
+                <td class="down">-9</td>
+                <td class="down">+0.003</td>
+            </tr>
+            <tr>
+                <td>69</td>
+                <td class="player">Justin Frerich</td>
+                <td>69</td>
+                <td>0.872</td>
+                <td>85</td>
+                <td>0.792</td>
+                <td class="down">-16</td>
+                <td class="down">-0.079</td>
+            </tr>
+            <tr>
+                <td>70</td>
+                <td class="player">Antonio Cuaresma</td>
+                <td>70</td>
+                <td>0.842</td>
+                <td>62</td>
+                <td>1.352</td>
+                <td class="up">+8</td>
+                <td class="up">+0.511</td>
+            </tr>
+            <tr>
+                <td>71</td>
+                <td class="player">Beverly Vaillancourt</td>
+                <td>71</td>
+                <td>0.827</td>
+                <td>93</td>
+                <td>0.657</td>
+                <td class="down">-22</td>
+                <td class="down">-0.169</td>
+            </tr>
+            <tr>
+                <td>72</td>
+                <td class="player">Dan Hepburn</td>
+                <td>72</td>
+                <td>0.797</td>
+                <td>69</td>
+                <td>1.183</td>
+                <td class="up">+3</td>
+                <td class="up">+0.386</td>
+            </tr>
+            <tr>
+                <td>73</td>
+                <td class="player">Brayden Kelner</td>
+                <td>73</td>
+                <td>0.795</td>
+                <td>83</td>
+                <td>0.841</td>
+                <td class="down">-10</td>
+                <td class="down">+0.046</td>
+            </tr>
+            <tr>
+                <td>74</td>
+                <td class="player">Kevin Brooks</td>
+                <td>74</td>
+                <td>0.794</td>
+                <td>98</td>
+                <td>0.510</td>
+                <td class="down">-24</td>
+                <td class="down">-0.284</td>
+            </tr>
+            <tr>
+                <td>75</td>
+                <td class="player">Dave Ripka</td>
+                <td>75</td>
+                <td>0.768</td>
+                <td>78</td>
+                <td>0.931</td>
+                <td class="down">-3</td>
+                <td class="down">+0.163</td>
+            </tr>
+            <tr>
+                <td>76</td>
+                <td class="player">Lawson Lea</td>
+                <td>76</td>
+                <td>0.678</td>
+                <td>59</td>
+                <td>1.391</td>
+                <td class="up">+17</td>
+                <td class="up">+0.713</td>
+            </tr>
+            <tr>
+                <td>77</td>
+                <td class="player">Jesse Wiseman</td>
+                <td>77</td>
+                <td>0.666</td>
+                <td>89</td>
+                <td>0.755</td>
+                <td class="down">-12</td>
+                <td class="down">+0.090</td>
+            </tr>
+            <tr>
+                <td>78</td>
+                <td class="player">Anthony Brick</td>
+                <td>78</td>
+                <td>0.641</td>
+                <td>79</td>
+                <td>0.911</td>
+                <td class="down">-1</td>
+                <td class="down">+0.270</td>
+            </tr>
+            <tr>
+                <td>79</td>
+                <td class="player">Tom Johnston</td>
+                <td>79</td>
+                <td>0.618</td>
+                <td>60</td>
+                <td>1.388</td>
+                <td class="up">+19</td>
+                <td class="up">+0.770</td>
+            </tr>
+            <tr>
+                <td>80</td>
+                <td class="player">Chet Boehlke</td>
+                <td>80</td>
+                <td>0.602</td>
+                <td>72</td>
+                <td>1.046</td>
+                <td class="up">+8</td>
+                <td class="up">+0.445</td>
+            </tr>
+            <tr>
+                <td>81</td>
+                <td class="player">Jason Molloy</td>
+                <td>81</td>
+                <td>0.580</td>
+                <td>32</td>
+                <td>1.900</td>
+                <td class="up">+49</td>
+                <td class="up">+1.320</td>
+            </tr>
+            <tr>
+                <td>82</td>
+                <td class="player">Matthew Knapp</td>
+                <td>82</td>
+                <td>0.568</td>
+                <td>81</td>
+                <td>0.907</td>
+                <td class="up">+1</td>
+                <td class="up">+0.339</td>
+            </tr>
+            <tr>
+                <td>83</td>
+                <td class="player">Mike Beaton</td>
+                <td>83</td>
+                <td>0.521</td>
+                <td>92</td>
+                <td>0.681</td>
+                <td class="down">-9</td>
+                <td class="down">+0.160</td>
+            </tr>
+            <tr>
+                <td>84</td>
+                <td class="player">Ben Harding</td>
+                <td>84</td>
+                <td>0.517</td>
+                <td>87</td>
+                <td>0.783</td>
+                <td class="down">-3</td>
+                <td class="down">+0.265</td>
+            </tr>
+            <tr>
+                <td>85</td>
+                <td class="player">Mark Vorster</td>
+                <td>85</td>
+                <td>0.483</td>
+                <td>100</td>
+                <td>0.488</td>
+                <td class="down">-15</td>
+                <td class="down">+0.005</td>
+            </tr>
+            <tr>
+                <td>86</td>
+                <td class="player">Derek McKie</td>
+                <td>86</td>
+                <td>0.476</td>
+                <td>96</td>
+                <td>0.542</td>
+                <td class="down">-10</td>
+                <td class="down">+0.066</td>
+            </tr>
+            <tr>
+                <td>87</td>
+                <td class="player">Ron Reesor</td>
+                <td>87</td>
+                <td>0.440</td>
+                <td>127</td>
+                <td>0.151</td>
+                <td class="down">-40</td>
+                <td class="down">-0.289</td>
+            </tr>
+            <tr>
+                <td>88</td>
+                <td class="player">Joert Edink</td>
+                <td>88</td>
+                <td>0.399</td>
+                <td>86</td>
+                <td>0.792</td>
+                <td class="up">+2</td>
+                <td class="up">+0.393</td>
+            </tr>
+            <tr>
+                <td>89</td>
+                <td class="player">Wilfred Smith</td>
+                <td>89</td>
+                <td>0.380</td>
+                <td>71</td>
+                <td>1.107</td>
+                <td class="up">+18</td>
+                <td class="up">+0.726</td>
+            </tr>
+            <tr>
+                <td>90</td>
+                <td class="player">James Temby</td>
+                <td>90</td>
+                <td>0.363</td>
+                <td>105</td>
+                <td>0.367</td>
+                <td class="down">-15</td>
+                <td class="down">+0.004</td>
+            </tr>
+            <tr>
+                <td>91</td>
+                <td class="player">Kevin Bechtel</td>
+                <td>91</td>
+                <td>0.345</td>
+                <td>82</td>
+                <td>0.846</td>
+                <td class="up">+9</td>
+                <td class="up">+0.501</td>
+            </tr>
+            <tr>
+                <td>92</td>
+                <td class="player">Cathy Kuepfer</td>
+                <td>92</td>
+                <td>0.326</td>
+                <td>110</td>
+                <td>0.314</td>
+                <td class="down">-18</td>
+                <td class="down">-0.012</td>
+            </tr>
+            <tr>
+                <td>93</td>
+                <td class="player">Reuben Jongsma</td>
+                <td>93</td>
+                <td>0.320</td>
+                <td>80</td>
+                <td>0.910</td>
+                <td class="up">+13</td>
+                <td class="up">+0.590</td>
+            </tr>
+            <tr>
+                <td>94</td>
+                <td class="player">Josh Molloy</td>
+                <td>94</td>
+                <td>0.317</td>
+                <td>119</td>
+                <td>0.242</td>
+                <td class="down">-25</td>
+                <td class="down">-0.076</td>
+            </tr>
+            <tr>
+                <td>95</td>
+                <td class="player">Árpád Lonsták</td>
+                <td>95</td>
+                <td>0.310</td>
+                <td>90</td>
+                <td>0.701</td>
+                <td class="up">+5</td>
+                <td class="up">+0.391</td>
+            </tr>
+            <tr>
+                <td>96</td>
+                <td class="player">Christina Campbell</td>
+                <td>96</td>
+                <td>0.307</td>
+                <td>102</td>
+                <td>0.440</td>
+                <td class="down">-6</td>
+                <td class="down">+0.133</td>
+            </tr>
+            <tr>
+                <td>97</td>
+                <td class="player">Roger Vaillancourt</td>
+                <td>97</td>
+                <td>0.306</td>
+                <td>109</td>
+                <td>0.340</td>
+                <td class="down">-12</td>
+                <td class="down">+0.034</td>
+            </tr>
+            <tr>
+                <td>98</td>
+                <td class="player">Rob Mader</td>
+                <td>98</td>
+                <td>0.297</td>
+                <td>91</td>
+                <td>0.697</td>
+                <td class="up">+7</td>
+                <td class="up">+0.400</td>
+            </tr>
+            <tr>
+                <td>99</td>
+                <td class="player">Louis Gauthier</td>
+                <td>99</td>
+                <td>0.291</td>
+                <td>97</td>
+                <td>0.514</td>
+                <td class="up">+2</td>
+                <td class="up">+0.223</td>
+            </tr>
+            <tr>
+                <td>100</td>
+                <td class="player">Mark Thurling</td>
+                <td>100</td>
+                <td>0.275</td>
+                <td>116</td>
+                <td>0.278</td>
+                <td class="down">-16</td>
+                <td class="down">+0.003</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="chart-container">
+        <div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.3.0.min.js" integrity="sha256-bO3dS6yCpk9aK4gUpNELtCiDeSYvGYnK7jFI58NQnHI=" crossorigin="anonymous"></script>                <div id="186ce467-cd71-4cf1-a588-f8edd578e7fc" class="plotly-graph-div" style="height:800px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("186ce467-cd71-4cf1-a588-f8edd578e7fc")) {                    Plotly.newPlot(                        "186ce467-cd71-4cf1-a588-f8edd578e7fc",                        [{"colorbar":{"title":{"text":"Rank"}},"colorscale":[[0.0,"rgb(0,104,55)"],[0.1,"rgb(26,152,80)"],[0.2,"rgb(102,189,99)"],[0.3,"rgb(166,217,106)"],[0.4,"rgb(217,239,139)"],[0.5,"rgb(255,255,191)"],[0.6,"rgb(254,224,139)"],[0.7,"rgb(253,174,97)"],[0.8,"rgb(244,109,67)"],[0.9,"rgb(215,48,39)"],[1.0,"rgb(165,0,38)"]],"showscale":true,"text":[["Rank: 1\u003cbr\u003eRating: 5.285","Rank: 2\u003cbr\u003eRating: 5.147","Rank: 3\u003cbr\u003eRating: 4.723","Rank: 4\u003cbr\u003eRating: 4.560","Rank: 5\u003cbr\u003eRating: 4.380","Rank: 6\u003cbr\u003eRating: 4.328","Rank: 7\u003cbr\u003eRating: 3.856","Rank: 8\u003cbr\u003eRating: 3.385","Rank: 9\u003cbr\u003eRating: 3.289","Rank: 10\u003cbr\u003eRating: 2.982","Rank: 11\u003cbr\u003eRating: 2.895","Rank: 12\u003cbr\u003eRating: 2.875","Rank: 13\u003cbr\u003eRating: 2.692","Rank: 14\u003cbr\u003eRating: 2.666","Rank: 15\u003cbr\u003eRating: 2.653","Rank: 16\u003cbr\u003eRating: 2.646","Rank: 17\u003cbr\u003eRating: 2.584","Rank: 18\u003cbr\u003eRating: 2.511","Rank: 19\u003cbr\u003eRating: 2.464","Rank: 20\u003cbr\u003eRating: 2.406"],["Rank: 1\u003cbr\u003eRating: 5.267","Rank: 2\u003cbr\u003eRating: 4.390","Rank: 3\u003cbr\u003eRating: 4.377","Rank: 5\u003cbr\u003eRating: 3.997","Rank: 6\u003cbr\u003eRating: 3.711","Rank: 4\u003cbr\u003eRating: 4.260","Rank: 7\u003cbr\u003eRating: 3.603","Rank: 8\u003cbr\u003eRating: 3.403","Rank: 9\u003cbr\u003eRating: 3.373","Rank: 10\u003cbr\u003eRating: 2.985","Rank: 11\u003cbr\u003eRating: 2.902","Rank: 15\u003cbr\u003eRating: 2.661","Rank: 14\u003cbr\u003eRating: 2.694","Rank: 17\u003cbr\u003eRating: 2.642","Rank: 16\u003cbr\u003eRating: 2.651","Rank: 13\u003cbr\u003eRating: 2.698","Rank: 19\u003cbr\u003eRating: 2.499","Rank: 12\u003cbr\u003eRating: 2.768","Rank: 21\u003cbr\u003eRating: 2.419","Rank: 22\u003cbr\u003eRating: 2.412"]],"texttemplate":"%{text}","x":["Singles Only","With Doubles"],"y":["Justin Slater","Devon Fortino","Andrew Hutchinson","Josh Carrafiello","Shawn Hagarty","Connor Reinman","Jason Beierling","Tom Curry","Jeremy Tracey","Ryan Buhr","Robert Bonnett","Ray Beierling","Steve Burrows","Ron Langill","Brian Cook","Darren Carr","Nolan Tracey","James Medway","Travis Keener","Mike Ray"],"z":[[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],[1,2,3,5,6,4,7,8,9,10,11,15,14,17,16,13,19,12,21,22]],"zmax":50,"zmin":1,"type":"heatmap"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"title":{"text":"TTT: Singles Only vs With Doubles \u2013 Top 20"},"height":800},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+</body>
+</html>
