@@ -125,7 +125,7 @@ def get_top_players(singles_data, doubles_data, n=100):
     rankings.sort(key=lambda x: x[1], reverse=True)
     return rankings[:n]
 
-def generate_html(singles_data, doubles_data, top_players):
+def generate_html(singles_data, doubles_data, top_players, num_tournaments, num_players):
     """Generate the interactive HTML file."""
     
     player_data = {}
@@ -156,10 +156,10 @@ def generate_html(singles_data, doubles_data, top_players):
     player_list = sorted(player_data.keys())
     
     # Read the template parts from a separate approach
-    html = generate_html_content(player_data, player_list)
+    html = generate_html_content(player_data, player_list, num_tournaments, num_players)
     return html
 
-def generate_html_content(player_data, player_list):
+def generate_html_content(player_data, player_list, num_tournaments, num_players):
     import json
     
     css = '''
@@ -426,6 +426,7 @@ def generate_html_content(player_data, player_list):
         <div class="header-content">
             <h1>🥏 Crokinole TrueSkill Explorer</h1>
             <p class="subtitle">Compare player skill progression: Singles Only vs Singles + Doubles</p>
+            <p class="subtitle" style="font-size: 0.9rem; margin-top: 0.5rem;">{num_tournaments} tournaments • {num_players} players in dataset</p>
         </div>
     </header>
     <main class="container">
@@ -489,7 +490,9 @@ def main():
     print(f"Selected top {len(top_players)} players")
     
     print("Generating interactive HTML...")
-    html = generate_html(singles_data, doubles_data, top_players)
+    num_tournaments = len(tournaments)
+    num_players = len(set(singles_data.keys()) | set(doubles_data.keys()))
+    html = generate_html(singles_data, doubles_data, top_players, num_tournaments, num_players)
     
     output_file = 'ttt_interactive_explorer.html'
     with open(output_file, 'w', encoding='utf-8') as f:
