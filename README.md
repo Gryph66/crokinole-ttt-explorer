@@ -4,7 +4,13 @@ An interactive visualization tool for exploring TrueSkill Through Time (TTT) rat
 
 ## 🎯 Live Demo
 
-**[View the Interactive Explorer](https://Gryph66.github.io/crokinole-ttt-explorer/)**
+### Available Visualizations:
+
+| Page | Description |
+|------|-------------|
+| **[Interactive Explorer](https://Gryph66.github.io/crokinole-ttt-explorer/)** | Select players and compare their skill progression over time |
+| **[Rankings Table](https://Gryph66.github.io/crokinole-ttt-explorer/ttt_singles_vs_doubles.html)** | Side-by-side ranking comparison between models |
+| **[Top 20 Learning Curves](https://Gryph66.github.io/crokinole-ttt-explorer/crokinole_top20_FINAL_HIGH_CONTRAST.html)** | Detailed learning curves for top 20 players |
 
 ## Features
 
@@ -50,7 +56,9 @@ python generate_ttt_explorer.py
 
 ## Files
 
-- `index.html` - The interactive explorer (GitHub Pages)
+- `index.html` - The interactive explorer (GitHub Pages default)
+- `ttt_singles_vs_doubles.html` - Rankings comparison table
+- `crokinole_top20_FINAL_HIGH_CONTRAST.html` - Top 20 player learning curves
 - `generate_ttt_explorer.py` - Python script to regenerate the explorer
 - `ftt_learningcurves.py` - Learning curve generation utilities
 - `model_comparison_with_double.py` - Model comparison analysis
@@ -58,4 +66,3 @@ python generate_ttt_explorer.py
 ## License
 
 MIT License - Feel free to use and adapt for other rating visualizations.
-

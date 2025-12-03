@@ -429,6 +429,11 @@ def generate_html_content(player_data, player_list, num_tournaments, num_players
             <p class="subtitle" style="font-size: 0.9rem; margin-top: 0.5rem;">{num_tournaments} tournaments • {num_players} players in dataset</p>
         </div>
     </header>
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-link active">📊 Interactive Explorer</a>
+        <a href="ttt_singles_vs_doubles.html" class="nav-link">📋 Rankings Table</a>
+        <a href="crokinole_top20_FINAL_HIGH_CONTRAST.html" class="nav-link">🏆 Top 20 Learning Curves</a>
+    </nav>
     <main class="container">
         <section class="controls">
             <div class="controls-header">
