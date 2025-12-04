@@ -8,13 +8,14 @@ import json
 from datetime import datetime as dt
 
 TOP_N = 100
+GAMMA_VALUES = [0.03, 0.015, 0.0075]
 
 # ==========================================
 # 1. LOAD DATA
 # ==========================================
 def load_data():
     """Load tournament data from CSV."""
-    print("Loading nca_all_tournament_data-6.csv...")
+    print("Loading nca_all_tournament_data-5.csv...")
     df = pd.read_csv('nca_all_tournament_data-5.csv')
     df['date'] = pd.to_datetime(df['tournament_date'])
     
@@ -61,7 +62,7 @@ def load_data():
 # ==========================================
 def run_ttt_singles_only(tournaments, gamma=0.03):
     """Run TTT using only singles matches."""
-    print("Running TTT Singles Only (gamma=0.03)...")
+    print(f"Running TTT Singles Only (gamma={gamma})...")
     composition = []
     times = []
     for t in tournaments:
@@ -78,7 +79,7 @@ def run_ttt_singles_only(tournaments, gamma=0.03):
 
 def run_ttt_with_doubles(tournaments, gamma=0.03):
     """Run TTT using both singles and doubles matches."""
-    print("Running TTT + Doubles (gamma=0.03)...")
+    print(f"Running TTT + Doubles (gamma={gamma})...")
     composition = []
     times = []
     for t in tournaments:
@@ -111,58 +112,73 @@ def extract_learning_curve_data(lc):
             }
     return data
 
-def get_top_players(singles_data, doubles_data, n=100):
-    """Get top N players by conservative rating from singles model."""
-    all_players = set(singles_data.keys()) | set(doubles_data.keys())
+def get_top_players_multi_gamma(all_gamma_data, n=100):
+    """Get top N players by conservative rating across all gamma values."""
+    all_players = set()
+    for gamma_data in all_gamma_data.values():
+        all_players |= set(gamma_data['singles'].keys()) | set(gamma_data['doubles'].keys())
+    
+    # Use the middle gamma (0.015) as the reference for ranking
+    ref_gamma = 0.015
+    ref_singles = all_gamma_data[ref_gamma]['singles']
+    ref_doubles = all_gamma_data[ref_gamma]['doubles']
     
     rankings = []
     for player in all_players:
-        singles_con = singles_data.get(player, {}).get('conservative', float('-inf'))
-        doubles_con = doubles_data.get(player, {}).get('conservative', float('-inf'))
+        singles_con = ref_singles.get(player, {}).get('conservative', float('-inf'))
+        doubles_con = ref_doubles.get(player, {}).get('conservative', float('-inf'))
         max_con = max(singles_con, doubles_con)
-        rankings.append((player, max_con, singles_con, doubles_con))
+        rankings.append((player, max_con))
     
     rankings.sort(key=lambda x: x[1], reverse=True)
-    return rankings[:n]
+    return [p for p, _ in rankings[:n]]
 
-def generate_html(singles_data, doubles_data, top_players, num_tournaments, num_players):
-    """Generate the interactive HTML file."""
+def generate_html(all_gamma_data, top_players, num_tournaments, num_players):
+    """Generate the interactive HTML file with all gamma scenarios."""
     
-    player_data = {}
-    for player, max_con, singles_con, doubles_con in top_players:
-        player_data[player] = {
-            'singles': singles_data.get(player),
-            'doubles': doubles_data.get(player),
-            'singles_conservative': singles_con if singles_con != float('-inf') else None,
-            'doubles_conservative': doubles_con if doubles_con != float('-inf') else None
-        }
+    # Build player data for all gamma values
+    all_player_data = {}
+    for gamma in GAMMA_VALUES:
+        singles_data = all_gamma_data[gamma]['singles']
+        doubles_data = all_gamma_data[gamma]['doubles']
+        
+        player_data = {}
+        for player in top_players:
+            player_data[player] = {
+                'singles': singles_data.get(player),
+                'doubles': doubles_data.get(player),
+                'singles_conservative': singles_data.get(player, {}).get('conservative'),
+                'doubles_conservative': doubles_data.get(player, {}).get('conservative')
+            }
+        
+        # Calculate ranks for this gamma
+        singles_ranked = sorted(
+            [(p, d['singles_conservative']) for p, d in player_data.items() if d['singles_conservative'] is not None],
+            key=lambda x: x[1], reverse=True
+        )
+        doubles_ranked = sorted(
+            [(p, d['doubles_conservative']) for p, d in player_data.items() if d['doubles_conservative'] is not None],
+            key=lambda x: x[1], reverse=True
+        )
+        
+        singles_ranks = {p: i+1 for i, (p, _) in enumerate(singles_ranked)}
+        doubles_ranks = {p: i+1 for i, (p, _) in enumerate(doubles_ranked)}
+        
+        for player in player_data:
+            player_data[player]['singles_rank'] = singles_ranks.get(player)
+            player_data[player]['doubles_rank'] = doubles_ranks.get(player)
+        
+        all_player_data[gamma] = player_data
     
-    singles_ranked = sorted(
-        [(p, d['singles_conservative']) for p, d in player_data.items() if d['singles_conservative'] is not None],
-        key=lambda x: x[1], reverse=True
-    )
-    doubles_ranked = sorted(
-        [(p, d['doubles_conservative']) for p, d in player_data.items() if d['doubles_conservative'] is not None],
-        key=lambda x: x[1], reverse=True
-    )
+    player_list = sorted(top_players)
     
-    singles_ranks = {p: i+1 for i, (p, _) in enumerate(singles_ranked)}
-    doubles_ranks = {p: i+1 for i, (p, _) in enumerate(doubles_ranked)}
-    
-    for player in player_data:
-        player_data[player]['singles_rank'] = singles_ranks.get(player)
-        player_data[player]['doubles_rank'] = doubles_ranks.get(player)
-    
-    player_list = sorted(player_data.keys())
-    
-    # Read the template parts from a separate approach
-    html = generate_html_content(player_data, player_list, num_tournaments, num_players)
+    html = generate_html_content(all_player_data, player_list, num_tournaments, num_players)
     return html
 
-def generate_html_content(player_data, player_list, num_tournaments, num_players):
+def generate_html_content(all_player_data, player_list, num_tournaments, num_players):
     import json
     
-    css = '''
+    css = """
         :root {
             --bg-primary: #0d1117;
             --bg-secondary: #161b22;
@@ -240,30 +256,58 @@ def generate_html_content(player_data, player_list, num_tournaments, num_players
         .empty-state-icon { font-size: 4rem; margin-bottom: 1rem; opacity: 0.5; }
         .empty-state-text { font-size: 1.1rem; }
         .footer { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border-primary); margin-top: 2rem; }
-        @media (max-width: 768px) { h1 { font-size: 1.75rem; } .container { padding: 1rem; } select { min-width: 100%; } #chart { height: 400px; } }
-    '''
+        .gamma-selector { display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--bg-tertiary); border-radius: 8px; margin-bottom: 1rem; }
+        .gamma-selector label { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); }
+        .gamma-selector select { min-width: 150px; }
+        .gamma-info { font-size: 0.8rem; color: var(--text-muted); margin-left: auto; }
+        @media (max-width: 768px) { h1 { font-size: 1.75rem; } .container { padding: 1rem; } select { min-width: 100%; } #chart { height: 400px; } .gamma-selector { flex-direction: column; align-items: flex-start; } .gamma-info { margin-left: 0; margin-top: 0.5rem; } }
+    """
     
-    js_data = f'''
-        const playerData = {json.dumps(player_data, indent=2)};
+    # Convert gamma keys to strings for JSON
+    all_player_data_str_keys = {str(g): data for g, data in all_player_data.items()}
+    
+    js_data = f"""
+        const allPlayerData = {json.dumps(all_player_data_str_keys, indent=2)};
         const playerList = {json.dumps(player_list)};
-    '''
+        const gammaValues = {json.dumps([str(g) for g in GAMMA_VALUES])};
+        let currentGamma = "0.015";
+        let playerData = allPlayerData[currentGamma];
+    """
     
-    js_code = '''
+    js_code = """
         const colors = ['#58a6ff', '#3fb950', '#d29922', '#f85149', '#a371f7', '#39c5cf', '#db61a2', '#e3b341', '#8b949e', '#ff7b72'];
         let selectedPlayers = [];
         
-        document.addEventListener('DOMContentLoaded', function() { populateDropdown(); });
+        document.addEventListener('DOMContentLoaded', function() { 
+            populateDropdown(); 
+            updateGammaDisplay();
+        });
+        
+        function changeGamma(gamma) {
+            currentGamma = gamma;
+            playerData = allPlayerData[gamma];
+            updateGammaDisplay();
+            populateDropdown();
+            updateUI();
+        }
+        
+        function updateGammaDisplay() {
+            document.getElementById('currentGammaValue').textContent = 'γ=' + currentGamma;
+        }
         
         function populateDropdown() {
             const select = document.getElementById('playerSelect');
+            const currentValue = select.value;
+            select.innerHTML = '<option value="">Choose a player...</option>';
             playerList.forEach(player => {
                 const option = document.createElement('option');
                 option.value = player;
                 const data = playerData[player];
-                const rank = data.singles_rank || data.doubles_rank || '—';
+                const rank = data?.singles_rank || data?.doubles_rank || '—';
                 option.textContent = `${player} (#${rank})`;
                 select.appendChild(option);
             });
+            select.value = currentValue;
         }
         
         function addPlayer(name) {
@@ -285,7 +329,7 @@ def generate_html_content(player_data, player_list, num_tournaments, num_players
         
         function addTopPlayers(n) {
             const topPlayers = playerList
-                .filter(p => playerData[p].singles_rank)
+                .filter(p => playerData[p]?.singles_rank)
                 .sort((a, b) => playerData[a].singles_rank - playerData[b].singles_rank)
                 .slice(0, n);
             selectedPlayers = [...topPlayers];
@@ -294,7 +338,7 @@ def generate_html_content(player_data, player_list, num_tournaments, num_players
         
         function addRangePlayers(start, end) {
             const rankedPlayers = playerList
-                .filter(p => playerData[p].singles_rank)
+                .filter(p => playerData[p]?.singles_rank)
                 .sort((a, b) => playerData[a].singles_rank - playerData[b].singles_rank);
             const rangePlayers = rankedPlayers.slice(start - 1, end);
             selectedPlayers = [...rangePlayers];
@@ -329,6 +373,7 @@ def generate_html_content(player_data, player_list, num_tournaments, num_players
             const traces = [];
             selectedPlayers.forEach((player, i) => {
                 const data = playerData[player];
+                if (!data) return;
                 const color = colors[i];
                 if (data.singles) {
                     const s = data.singles;
@@ -352,6 +397,7 @@ def generate_html_content(player_data, player_list, num_tournaments, num_players
             if (selectedPlayers.length === 0) { panel.innerHTML = ''; return; }
             panel.innerHTML = selectedPlayers.map((player, i) => {
                 const data = playerData[player];
+                if (!data) return '';
                 const color = colors[i];
                 const singlesRating = data.singles_conservative ? data.singles_conservative.toFixed(3) : '—';
                 const doublesRating = data.doubles_conservative ? data.doubles_conservative.toFixed(3) : '—';
@@ -409,7 +455,9 @@ def generate_html_content(player_data, player_list, num_tournaments, num_players
                     </div>`;
             }).join('');
         }
-    '''
+    """
+    
+    gamma_options = ''.join([f'<option value="{g}" {"selected" if g == 0.015 else ""}>{g} {"(default)" if g == 0.03 else "(slower drift)" if g == 0.015 else "(slowest drift)"}</option>' for g in GAMMA_VALUES])
     
     html = f'''<!DOCTYPE html>
 <html lang="en">
@@ -435,6 +483,15 @@ def generate_html_content(player_data, player_list, num_tournaments, num_players
     </nav>
     <main class="container">
         <section class="controls">
+            <div class="gamma-selector">
+                <label for="gammaSelect">Skill Drift (γ):</label>
+                <div class="select-wrapper">
+                    <select id="gammaSelect" onchange="changeGamma(this.value)">
+                        {gamma_options}
+                    </select>
+                </div>
+                <span class="gamma-info">Lower γ = skills change more slowly over time • Current: <span id="currentGammaValue">γ=0.015</span></span>
+            </div>
             <div class="controls-header">
                 <span class="controls-title">Select Players (up to 10)</span>
                 <button class="btn btn-danger" onclick="clearAllPlayers()">Clear All</button>
@@ -470,7 +527,7 @@ def generate_html_content(player_data, player_list, num_tournaments, num_players
     </main>
     <footer class="footer">
         <p>TrueSkill Through Time Analysis • Data includes NCA tournament results</p>
-        <p>Model parameters: γ=0.03, σ=1.667, β=1.0</p>
+        <p>Model parameters: σ=1.667, β=1.0 • γ selectable above</p>
     </footer>
     <script>{js_data}{js_code}</script>
 </body>
@@ -483,23 +540,38 @@ def main():
     print("=" * 60)
     
     tournaments = load_data()
-    singles_lc = run_ttt_singles_only(tournaments)
-    doubles_lc = run_ttt_with_doubles(tournaments)
     
-    print("Extracting learning curve data...")
-    singles_data = extract_learning_curve_data(singles_lc)
-    doubles_data = extract_learning_curve_data(doubles_lc)
+    # Run models for all gamma values
+    all_gamma_data = {}
+    for gamma in GAMMA_VALUES:
+        print(f"\n--- Processing gamma={gamma} ---")
+        singles_lc = run_ttt_singles_only(tournaments, gamma=gamma)
+        doubles_lc = run_ttt_with_doubles(tournaments, gamma=gamma)
+        
+        singles_data = extract_learning_curve_data(singles_lc)
+        doubles_data = extract_learning_curve_data(doubles_lc)
+        
+        print(f"  Singles model: {len(singles_data)} players")
+        print(f"  Doubles model: {len(doubles_data)} players")
+        
+        all_gamma_data[gamma] = {
+            'singles': singles_data,
+            'doubles': doubles_data
+        }
     
-    print(f"Singles model: {len(singles_data)} players")
-    print(f"Doubles model: {len(doubles_data)} players")
-    
-    top_players = get_top_players(singles_data, doubles_data, TOP_N)
-    print(f"Selected top {len(top_players)} players")
+    # Get top players across all gamma values
+    top_players = get_top_players_multi_gamma(all_gamma_data, TOP_N)
+    print(f"\nSelected top {len(top_players)} players")
     
     print("Generating interactive HTML...")
     num_tournaments = len(tournaments)
-    num_players = len(set(singles_data.keys()) | set(doubles_data.keys()))
-    html = generate_html(singles_data, doubles_data, top_players, num_tournaments, num_players)
+    # Count unique players across all gammas
+    all_players = set()
+    for gamma_data in all_gamma_data.values():
+        all_players |= set(gamma_data['singles'].keys()) | set(gamma_data['doubles'].keys())
+    num_players = len(all_players)
+    
+    html = generate_html(all_gamma_data, top_players, num_tournaments, num_players)
     
     output_file = 'ttt_interactive_explorer.html'
     with open(output_file, 'w', encoding='utf-8') as f:
